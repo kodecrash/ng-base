@@ -1,0 +1,16 @@
+@import "../../styles/media";
+
+.content-container {
+    .btn-search-application {
+       padding-top: 30px;
+    }
+}
+
+/** Mobile and Tablet Devices **/
+@include sm-md  {
+    .content-container {
+        .btn-search-application {
+           padding-top: 10px;
+        }
+    }
+}

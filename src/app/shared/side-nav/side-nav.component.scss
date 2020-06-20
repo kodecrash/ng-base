@@ -1,0 +1,114 @@
+@import "../../styles/colors";
+@import "../../styles/media";
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100%;
+    background: $light-blue;
+    color: $white;
+    transition: all 0.3s;
+    box-shadow: 5px 0 6px rgba(0,0,0,.1);
+    -webkit-box-shadow: 5px 0 6px rgba(0,0,0,.1);
+    -ms-box-shadow: 5px 0 6px rgba(0,0,0,.1);
+
+    &.active {
+        margin-left: -250px;
+    }
+
+    .sidebar-header {
+        padding: 20px;
+        background: $light-blue;
+    }
+
+    ul {
+        &.components {
+            padding: 20px 0;
+            border-bottom: 1px solid #47748b;
+        }
+
+        p {
+            color: $white;
+            padding: 10px;
+        }
+
+        li {
+            a {
+                padding: 10px;
+                font-size: 1.1em;
+                display: block;
+
+                &:hover {
+                    color: $dark-blue;
+                    background: $white;
+                }
+            }
+
+            &.active {
+                a {
+                    color: $white;
+                    background: $dark-blue;
+                }
+            }
+        }
+
+        ul {
+            a {
+                font-size: 0.9em !important;
+                padding-left: 30px !important;
+                background: #6d7fcc;
+            }
+        }
+    }
+}
+
+/** Mobile and Tablet Devices **/
+@include sm-md  {
+    #sidebar {
+        margin-left: 0; 
+
+        &.active {
+            text-align: center;
+            .sidebar-header {
+
+                h3 {
+                    display: none;
+                }
+
+                strong {
+                    display: block;
+                }
+
+            }
+
+            ul {
+                li {
+                    a {
+                        padding: 20px 10px;
+                        font-size: 0.85em;
+
+                        i {
+                            margin-right:  0;
+                            display: block;
+                            font-size: 1.8em;
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+
+                ul {
+                    a {
+                        padding: 10px !important;
+                    }
+                }
+            }
+        }
+    
+        .sidebar-header {
+            strong {
+                display: none;
+            }
+        }
+    
+    }
+}

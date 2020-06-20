@@ -1,0 +1,258 @@
+<div class="container content-container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>
+       New Ticket
+      </h2>
+      <hr class="divider"/>
+       <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="applicationName"><strong>Application Name</strong></label>
+              <select formControlName="applicationName" class="form-control"  
+              [ngClass]="{ 'is-invalid': submitted && f.applicationName.errors }" > 
+                <option value=""> Select Application  </option>
+                <option value="donation"> Donation  </option>
+                <option value="satsang"> Satsang Mobile App </option>
+                <option value="dharmakshetra"> Dharmakshetra </option>
+                <option value="ebooking"> Ebooking </option>
+                <option value="oms"> OMS </option>
+              </select>
+              <div *ngIf="submitted && f.applicationName.errors" class="invalid-feedback">
+                <div *ngIf="f.applicationName.errors.required">Application name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group btn-search-application">
+                <label for="">&nbsp;</label>
+                <button class="btn btn-primary">Search</button>
+              </div>
+          </div>
+         
+        </div>
+        <hr class="divider"/>
+        <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+                <label for="category"><strong>Category</strong></label>
+                <select formControlName="category" class="form-control"  
+                [ngClass]="{ 'is-invalid': submitted && f.category.errors }" > 
+                  <option value=""> Select category  </option>
+                  <option value="general"> General  </option>
+                  <option value="production"> Production </option>
+                  <option value="uat"> UAT </option>
+                  <option value="environment"> Environment </option>
+                </select>
+                <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                  <div *ngIf="f.category.errors.required">Category is required</div>
+                </div>
+              </div>
+         </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="subject"><strong>Subject</strong></label>
+                    <input type="text" formControlName="subject" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+                    <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                      <div *ngIf="f.subject.errors.required">Subject is required</div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="description"><strong>Description</strong></label>
+                    <textarea type="text" formControlName="description" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.description.errors }"> </textarea>
+                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                      <div *ngIf="f.description.errors.required">Description is required</div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <hr class="divider"/>
+        <div class="row">
+            <div class="col-md-4">
+              <h5>Search Sevakendra</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          Sevakendra ID
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          Sevakendra Name
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+              <h5>Sevakendra Details</h5>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4">
+                <label><strong>Sevakendra ID: </strong></label>
+                <span> 111</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>Sevakendra Name: </strong></label>
+                <span> Anandwadi</span>
+            </div>
+           
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label><strong>Sevakendra Country: </strong></label>
+                <span> India</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>Sevakendra State: </strong></label>
+                <span> Maharashtra</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>Sevakendra District: </strong></label>
+                <span> Beed</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label><strong>Sevakendra Language: </strong></label>
+                <span> Marathi</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>MAC Address: </strong></label>
+                <span> Mhsy893038kl</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>Contact Person: </strong></label>
+                <span> Anant Shelke</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label><strong>Contact Number: </strong></label>
+                <span> 9878965489</span>
+            </div>
+            <div class="col-md-4">
+                <label><strong>Sevakendra Taluka: </strong></label>
+                <span> Beed</span>
+            </div>
+            
+        </div>
+        <!-- <hr class="divider"/> -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="status"><strong>Status</strong></label>
+                  <select formControlName="status" class="form-control"  
+                  [ngClass]="{ 'is-invalid': submitted && f.status.errors }" > 
+                    <option value=""> Select status  </option>
+                    <option value="New"> New  </option>
+                    <option value="In Progress"> In Progress </option>
+                    <option value="Closed"> Closed </option>
+                    <option value="Reopened"> Reopened </option>
+                    <option value="Deferred"> Deferred </option>
+                    <option value="Invalid"> Invalid </option>
+                  </select>
+                  <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                    <div *ngIf="f.status.errors.required">Status is required</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="priority"><strong>Priority</strong></label>
+                  <select formControlName="priority" class="form-control"  
+                  [ngClass]="{ 'is-invalid': submitted && f.priority.errors }" > 
+                    <option value=""> Select priority  </option>
+                    <option value="Minor"> Minor  </option>
+                    <option value="Major"> Major </option>
+                    <option value="Intermediate"> Intermediate </option>
+                    <option value="Critical"> Critical </option>
+                  </select>
+                  <div *ngIf="submitted && f.priority.errors" class="invalid-feedback">
+                    <div *ngIf="f.priority.errors.required">Priority is required</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="assignee"><strong>Assignee</strong></label>
+                  <select formControlName="assignee" class="form-control"  
+                  [ngClass]="{ 'is-invalid': submitted && f.assignee.errors }" > 
+                    <option value=""> Select assignee  </option>
+                    <option value="John Mike"> John Mike  </option>
+                    <option value="Stephena Olevira"> Stephena Olevira </option>
+                    <option value="Brad Michel"> Brad Michel </option>
+                    <option value="Gerard Osollivean"> Gerard Osollivean </option>
+                  </select>
+                  <div *ngIf="submitted && f.assignee.errors" class="invalid-feedback">
+                    <div *ngIf="f.assignee.errors.required">Assignee is required</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="dueDate"><strong>Due date</strong></label>
+                  <date-picker formControlName="dueDate"  [dateValue]="dateValue" ></date-picker>
+                  <div *ngIf="submitted && f.dueDate.errors" class="invalid-feedback">
+                    <div *ngIf="f.dueDate.errors.required">Due date is required</div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                  <label for="platform"><strong>Platform</strong></label>
+                  <select formControlName="platform" class="form-control"  
+                  [ngClass]="{ 'is-invalid': submitted && f.platform.errors }" > 
+                    <option value=""> Select platform  </option>
+                    <option value="Desktop"> Desktop  </option>
+                    <option value="Tab"> Tab </option>
+                    <option value="Mobile"> Mobile </option>
+                  </select>
+                  <div *ngIf="submitted && f.platform.errors" class="invalid-feedback">
+                    <div *ngIf="f.platform.errors.required">Platform is required</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <hr class="divider"/>
+        <div class="row">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary"> Create Ticket </button>
+            </div>
+        </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- <modal #errorModal> </modal> -->

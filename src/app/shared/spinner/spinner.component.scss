@@ -1,0 +1,21 @@
+@import "../../styles/colors";
+
+.spinner-icon {
+    padding-top: 20%;
+    .spinner-border {
+        border: 16px solid $medium-white; /* Light grey */
+        border-top: 16px solid $blue; /* Blue */
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        -webkit-animation: spin 2s linear infinite;
+            -ms-animation: spin 2s linear infinite;
+               animation: spin 2s linear infinite;
+    }
+}
+ 
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-10 col-sm-10  col-md-10">
+    <input type="text" class="form-control"  #dp="bsDatepicker" bsDatepicker [bsValue]="dateValue" [bsConfig]="bsConfig" (bsValueChange)="onDateChange($event)">
+  </div>
+  <div class="col-2 col-sm-2  col-md-2">
+    <!-- <button class="btn btn-success" [attr.aria-expanded]="dp.isOpen">Date Picker</button> -->
+    <i class="fa fa-calendar fa-lg" (click)="dp.toggle()" aria-hidden="true"></i>
+  </div>
+</div>

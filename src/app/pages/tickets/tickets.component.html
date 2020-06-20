@@ -1,0 +1,24 @@
+<div class="container content-container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>
+       All Tickets
+      </h2>
+    <!-- <app-table *ngIf="tickets" [columns]="columns" 
+               [tableConfig]="tableConfig"
+               (onPageChange)="pageChanged($event)"
+               (onLoadTable)="onTableLoad()"
+               [data]="tickets"> 
+    </app-table> -->
+    <app-table *ngIf="tickets" [settings]="settings" [data]="tickets"> 
+    </app-table>
+     
+    </div>
+  </div>
+  <hr class="divider"/>
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <button class="btn btn-primary">Back</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<!-- <ng-table [config]="config" 
+          (tableChanged)="onChangeTable(config)" 
+          (cellClicked)="onCellClick($event)" 
+          [rows]="rows"
+          [columns]="columns">
+</ng-table> -->
+<ng2-smart-table [settings]="settings" [source]="rows"></ng2-smart-table>
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="config.itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="false"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+
