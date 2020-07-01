@@ -17,10 +17,6 @@ export class TicketsService {
   constructor(private http: HttpClient) { }
 
   getAllTickets(): Observable<any> {
-    return this.http.get<any>(AppConfig.services.getAllTicketsUrl, this.httpOptions)
-    .pipe(map( (data: any) => {
-      // login successful if there's a jwt token in the response
-      return data;
-    }));
+    return this.http.get<any>(AppConfig.services.getAllTicketsUrl, this.httpOptions);
   }
 }

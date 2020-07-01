@@ -17,7 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   // tslint:disable-next-line:no-input-rename
-  @Input('dateValue') _dateValue: Date;
+  @Input('dateValue') dateVal: Date;
   public bsConfig;
   private bsValue: Date;
 
@@ -25,11 +25,11 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   onTouched: any = () => { };
 
   get dateValue() {
-    return this._dateValue;
+    return this.dateVal;
   }
 
   set dateValue(val) {
-    this._dateValue = val;
+    this.dateVal = val;
     this.propagateChange(val);
     this.onTouched();
   }

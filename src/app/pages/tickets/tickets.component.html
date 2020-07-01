@@ -4,15 +4,23 @@
       <h2>
        All Tickets
       </h2>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMsg" 
+        [innerHtml]="errorMsg">
+          
+      </div>
     <!-- <app-table *ngIf="tickets" [columns]="columns" 
                [tableConfig]="tableConfig"
                (onPageChange)="pageChanged($event)"
                (onLoadTable)="onTableLoad()"
                [data]="tickets"> 
     </app-table> -->
-    <app-table *ngIf="tickets" [settings]="settings" [data]="tickets"> 
-    </app-table>
-     
+    <ng-container *ngIf="tickets$ | async as tickets" >
+      <app-table [settings]="settings" [data]="tickets"> 
+      </app-table>
+      <div *ngIf="tickets && tickets.length == 0">
+          No records found
+      </div>
+    </ng-container>
     </div>
   </div>
   <hr class="divider"/>

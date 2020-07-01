@@ -10,7 +10,7 @@ import { SharedBootstrapModule } from './shared-bootstrap.module';
 import { NavService } from './services/nav.service';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
 import { DatePickerComponent } from './shared/date-picker/date-picker.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
@@ -21,6 +21,8 @@ import { SpinnerService } from './services/spinner.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './shared/table/table.component';
 import { AuthGuard } from './services/authguard.service';
+import { HttpErrorInterceptor } from './services/http.interceptor';
+
 
 
 @NgModule({
@@ -49,7 +51,12 @@ import { AuthGuard } from './services/authguard.service';
 
   ],
   entryComponents: [ModalComponent],
-  providers: [ AuthGuard, NavService, ModalService, SpinnerService ],
+  providers: [ AuthGuard, NavService, ModalService, SpinnerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

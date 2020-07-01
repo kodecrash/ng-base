@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
@@ -27,15 +27,16 @@ export class AuthenticationService {
 
   login(user: User): Observable<any> {
     return this.http.post<User>(AppConfig.services.loginServiceUrl, user, this.httpOptions)
-      .pipe(map( (userData: User) => {
+      .pipe(map((userData: User) => {
         // login successful if there's a jwt token in the response
-        if (userData && userData['id']) {
+        if (userData && userData.id) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
         return userData;
-      }));
+      })
+      );
   }
 
   logout() {

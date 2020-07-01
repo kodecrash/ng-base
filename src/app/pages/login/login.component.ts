@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-
+  errorMsg: string;
 
   constructor(private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthenticationService,
-    private spinnerService: SpinnerService) {
+              private route: ActivatedRoute,
+              private router: Router,
+              private authService: AuthenticationService,
+              private spinnerService: SpinnerService) {
 
   }
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/home';
   }
 
   // convenience getter for easy access to form fields
@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
         this.spinnerService.hideSpinner();
         this.router.navigate([this.returnUrl]);
       }
+    }, (error) =>  {
+      this.errorMsg = error;
+      this.spinnerService.hideSpinner();
     });
   }
 

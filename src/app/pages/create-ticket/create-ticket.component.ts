@@ -14,7 +14,7 @@ export class CreateTicketComponent implements OnInit {
   dateValue: Date = new Date();
 
   constructor(private formBuilder: FormBuilder, private router: Router,
-    private modalService: ModalService) {
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class CreateTicketComponent implements OnInit {
       return;
     }
 
-   this.router.navigate(['home']);
+    this.router.navigate(['home']);
   }
 
 }

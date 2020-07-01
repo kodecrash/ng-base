@@ -11,13 +11,13 @@ export class TableComponent implements OnInit {
   @Input() tableConfig: any;
   @Input() settings: any;
   @Input() columns: Array<any>;
-  @Output() onLoadTable = new EventEmitter<any>();
-  @Output() onPageChange = new EventEmitter<any>();
+  @Output() loadTable = new EventEmitter<any>();
+  @Output() pageChange = new EventEmitter<any>();
   public rows: Array<any> = [];
-  public page: number = 1;
-  public maxSize: number = 5;
-  public numPages: number = 1;
-  public length: number = 0;
+  public page = 1;
+  public maxSize = 5;
+  public numPages = 1;
+  public length = 0;
   public config: any = {
     paging: true,
     filtering: {filterString: ''},
@@ -43,7 +43,7 @@ export class TableComponent implements OnInit {
       this.onChangeTable(this.config);
     }
 
-  
+
   }
 
   public onChangeTable(config: any, page: any = {page: this.page, itemsPerPage: this.config.itemsPerPage}): any {
@@ -59,7 +59,7 @@ export class TableComponent implements OnInit {
     const sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
     this.length = sortedData.length;
-    this.onLoadTable.emit(this.rows);
+    this.loadTable.emit(this.rows);
   }
 
   public changeFilter(data: any, config: any): any {
@@ -83,10 +83,10 @@ export class TableComponent implements OnInit {
         item[config.filtering.columnName].match(this.config.filtering.filterString));
     }
 
-    let tempArray: Array<any> = [];
+    const tempArray: Array<any> = [];
     filteredData.forEach((item: any) => {
       let flag = false;
-     
+
       this.columns.forEach((column: any) => {
         if (item[column].toString().match(this.config.filtering.filterString)) {
           flag = true;
@@ -102,26 +102,25 @@ export class TableComponent implements OnInit {
   }
 
   public changePage(page: any, data: Array<any> = this.data): Array<any> {
-    let start = (page.page - 1) * page.itemsPerPage;
-    let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
+    const start = (page.page - 1) * page.itemsPerPage;
+    const end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
     const pageRows = data.slice(start, end);
-    this.onPageChange.emit(pageRows);
+    this.pageChange.emit(pageRows);
     return pageRows;
   }
 
-  public changeSort(data:any, config:any):any {
+  public changeSort(data: any, config: any): any {
     if (!config.sorting) {
       return data;
     }
 
-    let columns = this.config.sorting.columns || [];
-    let columnName:string = void 0;
-    let sort:string = void 0;
-
-    for (let i = 0; i < columns.length; i++) {
-      if (columns[i].sort !== '' && columns[i].sort !== false) {
-        columnName = columns[i].name;
-        sort = columns[i].sort;
+    const columns = this.config.sorting.columns || [];
+    let columnName: string = void 0;
+    let sort: string = void 0;
+    for (const col of columns) {
+      if (col.sort !== '' && col.sort !== false) {
+        columnName = col.name;
+        sort = col.sort;
       }
     }
 
@@ -130,7 +129,7 @@ export class TableComponent implements OnInit {
     }
 
     // simple sorting
-    return data.sort((previous:any, current:any) => {
+    return data.sort((previous: any, current: any) => {
       if (previous[columnName] > current[columnName]) {
         return sort === 'desc' ? -1 : 1;
       } else if (previous[columnName] < current[columnName]) {

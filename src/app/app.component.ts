@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   showSpinner = false;
 
   constructor(private authService: AuthenticationService,
-    private router: Router,
-    private spinnerService: SpinnerService) {
+              private router: Router,
+              private spinnerService: SpinnerService) {
 
     this.authService.currentUser.subscribe(x => {
       this.currentUser = x;
@@ -32,6 +32,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
   }
 }

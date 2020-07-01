@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     currentUser: User;
     constructor(private router: Router, private authService: AuthenticationService) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>{
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
 
         return this.authService.currentUser.pipe(
             map(x => {
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
                 }
             }),
             catchError(err =>  of(false))
-        )
-       
+        );
+
     }
 }

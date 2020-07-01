@@ -15,7 +15,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     DatepickerModule.forRoot(),
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
-    //Ng2TableModule
+    // Ng2TableModule
     Ng2SmartTableModule
   ],
   exports: [

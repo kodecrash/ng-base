@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketsService } from '../../services/tickets.service';
 import { SpinnerService } from '../../services/spinner.service';
+import { of, Observable } from 'rxjs';
+import { Ticket } from 'src/app/models';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tickets',
@@ -9,8 +12,9 @@ import { SpinnerService } from '../../services/spinner.service';
 })
 export class TicketsComponent implements OnInit {
 
-  tickets: Array<any>;
-  
+  errorMsg: string;
+  tickets$: Observable<Ticket[]>;
+
   public settings = {
     columns: {
       ticketId: {
@@ -34,7 +38,7 @@ export class TicketsComponent implements OnInit {
       edit: false,
       delete: false,
     },
-  }
+  };
   public tableConfig: any = {
     paging: true,
   //  sorting: {columns: this.columns},
@@ -50,15 +54,20 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.showSpinner();
-    this.ticketService.getAllTickets().subscribe(data => {
-      if (data && data !== null) {
-        data[6].assignee = '<a href="javascript:void(0);" class="btn btn-link">John Mike</a>';
-        this.tickets = data;
-       // this.length = data.length;
+    this.tickets$ = this.ticketService.getAllTickets().pipe(
+      map((data) => {
+        if (data && data !== null) {
+          data[6].assignee = '<a href="javascript:void(0);" class="btn btn-link">John Mike</a>';
+          this.spinnerService.hideSpinner();
+          return data;
+        }
+      }),
+      catchError(error => {
+        this.errorMsg = error;
         this.spinnerService.hideSpinner();
-        // this.onChangeTable(this.config);
-      }
-    });
+        return of([]);
+      })
+    );
   }
 
   onTableLoad() {
