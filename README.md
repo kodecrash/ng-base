@@ -1,4 +1,19 @@
-# ng-base
+# ng-base 
+
+ng-base is a base framework for developing angular application. It is built using Angular 9 and ngx-bootstrap.
+
+# Demo
+
+ https://parigmngo.github.stackblitz.io/login
+
+# Features
+
+  1. Basic Authentication
+  2. Reactive Forms
+  3. ngx-bootstrap components integration
+  4. ng2-smart-table integration
+  5. HTTP services and error handling
+  6. Routing concepts
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
