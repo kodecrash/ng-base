@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { User } from '../../models/user';
 import { SpinnerService } from '../../services/spinner.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
   errorMsg: string;
+  destroyed = new Subject();
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -48,7 +51,9 @@ export class LoginComponent implements OnInit {
     this.spinnerService.showSpinner();
     console.log(this.loginForm);
     const user: User = this.loginForm.value;
-    this.authService.login(user).subscribe((data) => {
+    this.authService.login(user).pipe(
+      takeUntil(this.destroyed)
+    ).subscribe((data) => {
       if (data && data.id) {
         this.spinnerService.hideSpinner();
         this.router.navigate([this.returnUrl]);
@@ -57,6 +62,11 @@ export class LoginComponent implements OnInit {
       this.errorMsg = error;
       this.spinnerService.hideSpinner();
     });
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
 }
