@@ -40,7 +40,15 @@ a, a:hover, a:focus {
 }
 
 .wrapper {
+
+    display: flex;
+    align-items: stretch;
+
     #content {
+        width: 100%;
+        min-height: 100vh;
+        transition: all 0.3s;
+        
         .content-container {
             padding: 20px;
         }

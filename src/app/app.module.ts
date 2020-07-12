@@ -22,8 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './shared/table/table.component';
 import { AuthGuard } from './services/authguard.service';
 import { HttpErrorInterceptor } from './services/http.interceptor';
-
-
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SecureLayoutComponent } from './layouts/secure/secure-layout/secure-layout.component';
+import { UnsecureLayoutComponent } from './layouts/unsecure/unsecure-layout/unsecure-layout.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,10 @@ import { HttpErrorInterceptor } from './services/http.interceptor';
     TicketsComponent,
     ModalComponent,
     SpinnerComponent,
-    TableComponent
+    TableComponent,
+    PageNotFoundComponent,
+    SecureLayoutComponent,
+    UnsecureLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { HttpErrorInterceptor } from './services/http.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
       multi: true
-    } ],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,3 @@
-<div class="wrapper">
-  <app-side-nav *ngIf="currentUser"></app-side-nav>
-  <div id="content">
-    <app-nav *ngIf="currentUser"></app-nav>
-    <router-outlet></router-outlet>
-
-  </div>
-  <!-- <modal></modal> -->
-</div>
+<router-outlet></router-outlet>
 <spinner *ngIf="showSpinner"></spinner>
 

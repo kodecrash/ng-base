@@ -32,6 +32,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log(this.router['location'].path());
   }
 }
