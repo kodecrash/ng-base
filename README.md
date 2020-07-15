@@ -2,10 +2,6 @@
 
 ng-base is a base framework for developing angular application. It is built using Angular 9 and ngx-bootstrap.
 
-# Demo
-
- https://parigmngo.github.stackblitz.io/login
-
 # Features
 
   1. Basic Authentication
