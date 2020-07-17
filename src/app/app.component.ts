@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './models';
 import { AuthenticationService } from './services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { SpinnerService } from './services/spinner.service';
+import { Title } from '@angular/platform-browser';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private router: Router,
-              private spinnerService: SpinnerService) {
+              private spinnerService: SpinnerService,
+              private activatedRoute: ActivatedRoute,
+    private titleService: Title) {
 
     this.authService.currentUser.subscribe(x => {
       this.currentUser = x;
@@ -33,5 +37,19 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.router['location'].path());
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map(route => {
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        return route;
+      }),
+      filter((route) => route.outlet === 'primary'),
+      mergeMap(route => route.data)
+    ).subscribe((event) => {
+      this.titleService.setTitle(event['title']);
+    });
   }
 }

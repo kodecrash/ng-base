@@ -18,7 +18,7 @@ const routes: Routes = [
     path: '',
     component: UnsecureLayoutComponent,
     children: [
-      {path: 'login', component: LoginComponent, pathMatch: 'full'},
+      {path: 'login', component: LoginComponent, pathMatch: 'full', data: { title: 'Ng Base | Login'} },
       // {path: '**', component: PageNotFoundComponent}
     ]
   },
@@ -27,10 +27,10 @@ const routes: Routes = [
     path: '',
     component: SecureLayoutComponent,
     children: [
-      {path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      {path: 'about', component: AboutComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      {path: 'tickets', component: TicketsComponent, pathMatch: 'full', canActivate: [AuthGuard] }
+      {path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'Dashboard'}  },
+      {path: 'about', component: AboutComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'About'} },
+      {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'Create Ticket'} },
+      {path: 'tickets', component: TicketsComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'All Tickets'} }
     ]
   },
   {path: '**', component: PageNotFoundComponent}
