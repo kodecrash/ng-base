@@ -54,7 +54,10 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.showSpinner();
-    this.tickets$ = this.ticketService.getAllTickets().pipe(
+
+    // getAllTicketsFromDb calls firebase service
+    // use getAllTickets to get tickets from JSON service
+    this.tickets$ = this.ticketService.getAllTicketsFromDb().pipe(
       map((data) => {
         if (data && data !== null) {
           data[6].assignee = '<a href="javascript:void(0);" class="btn btn-link">John Mike</a>';
@@ -68,6 +71,8 @@ export class TicketsComponent implements OnInit {
         return of([]);
       })
     );
+
+    // Get Tickets from firebase
   }
 
   onTableLoad() {

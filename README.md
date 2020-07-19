@@ -14,6 +14,7 @@ ng-base is a base framework for developing angular application. It is built usin
   4. ng2-smart-table integration
   5. HTTP services and error handling
   6. Routing concepts
+  7. Firebase integration
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 

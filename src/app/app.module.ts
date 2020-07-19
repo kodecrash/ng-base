@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -25,6 +27,7 @@ import { HttpErrorInterceptor } from './services/http.interceptor';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SecureLayoutComponent } from './layouts/secure/secure-layout/secure-layout.component';
 import { UnsecureLayoutComponent } from './layouts/unsecure/unsecure-layout/unsecure-layout.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { UnsecureLayoutComponent } from './layouts/unsecure/unsecure-layout/unse
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
 
   ],
   entryComponents: [ModalComponent],
