@@ -51,7 +51,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.spinnerService.showSpinner();
     console.log(this.loginForm);
     const user: User = this.loginForm.value;
-    this.authService.login(user).pipe(
+    
+   // this.authService.login(user)
+   // for firebase use loginToDb method
+    this.authService.loginToDb(user).pipe(
       takeUntil(this.destroyed)
     ).subscribe((data) => {
       if (data && data.id) {

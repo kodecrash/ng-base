@@ -32,4 +32,10 @@ export class TicketsService {
     this.tickets = this.db.list('tickets');
     return this.tickets.valueChanges();
   }
+
+  createTicket(ticket: Ticket, callback: () => void) {
+    this.tickets = this.db.list('tickets');
+    return this.tickets.push(ticket);
+    callback();
+  }
 }

@@ -9,9 +9,9 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="applicationName"><strong>Application Name</strong></label>
-              <select formControlName="applicationName" class="form-control"  
-              [ngClass]="{ 'is-invalid': submitted && f.applicationName.errors }" > 
+              <label for="application"><strong>Application Name</strong></label>
+              <select formControlName="application" class="form-control"  
+              [ngClass]="{ 'is-invalid': submitted && f.application.errors }" > 
                 <option value=""> Select Application  </option>
                 <option value="donation"> Donation  </option>
                 <option value="satsang"> Satsang Mobile App </option>
@@ -19,8 +19,8 @@
                 <option value="ebooking"> Ebooking </option>
                 <option value="oms"> OMS </option>
               </select>
-              <div *ngIf="submitted && f.applicationName.errors" class="invalid-feedback">
-                <div *ngIf="f.applicationName.errors.required">Application name is required</div>
+              <div *ngIf="submitted && f.application.errors" class="invalid-feedback">
+                <div *ngIf="f.application.errors.required">Application name is required</div>
               </div>
             </div>
           </div>

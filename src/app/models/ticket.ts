@@ -9,4 +9,5 @@ export interface Ticket {
    assignee: string;
    platform?: string;
    dueDate: string;
+   ticketId?: string;
 }

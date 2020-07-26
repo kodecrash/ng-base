@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
+import { UtilsService } from 'src/app/services/utils.service';
+import { TicketsService } from 'src/app/services/tickets.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -14,12 +16,14 @@ export class CreateTicketComponent implements OnInit {
   dateValue: Date = new Date();
 
   constructor(private formBuilder: FormBuilder, private router: Router,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private utils: UtilsService,
+              private ticketService: TicketsService) {
   }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      applicationName: ['', Validators.required],
+      application: ['', Validators.required],
       category: ['', Validators.required],
       subject: ['', Validators.required],
       description: ['', []],
@@ -42,16 +46,20 @@ export class CreateTicketComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.form.invalid) {
-      const modalConfig: any = {
-        title: 'Success!',
-        content: 'Overridden Lorem Ipsum Text'
-      };
-      this.modalService.openAppModal(modalConfig);
-      return;
+    if (this.form.valid) {
+      this.form.value.ticketId = `TS${this.utils.generateRandomNumber(4)}`;
+      this.ticketService.createTicket(this.form.value,  () => {
+        const modalConfig: any = {
+          title: 'Success!',
+          content: `${this.form.value.ticketId} ticket created successfully`
+        };
+        this.modalService.openAppModal(modalConfig);
+        return;
+      });
+     
     }
 
-    this.router.navigate(['home']);
+    this.router.navigate(['tickets']);
   }
 
 }
