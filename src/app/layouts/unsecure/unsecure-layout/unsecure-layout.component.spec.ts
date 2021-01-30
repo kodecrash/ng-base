@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UnsecureLayoutComponent } from './unsecure-layout.component';
 
@@ -6,7 +6,7 @@ describe('UnsecureLayoutComponent', () => {
   let component: UnsecureLayoutComponent;
   let fixture: ComponentFixture<UnsecureLayoutComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ UnsecureLayoutComponent ]
     })
