@@ -1,6 +1,6 @@
 # ng-base 
 
-ng-base is a base framework for developing angular application. It is built using Angular 9 and ngx-bootstrap.
+ng-base is a base framework for developing angular application. It is built using Angular 11 and ngx-bootstrap.
 
 # Demo
 
