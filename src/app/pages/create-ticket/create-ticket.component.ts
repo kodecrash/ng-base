@@ -1,24 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { TicketsService } from 'src/app/services/tickets.service';
+import { ComponentCanDeactivate } from 'src/app/shared/ComponentCanDeactivate/ComponentCanDeactivate';
 
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.scss']
 })
-export class CreateTicketComponent implements OnInit {
+export class CreateTicketComponent extends ComponentCanDeactivate implements OnInit, AfterViewInit {
   form: FormGroup;
   submitted = false;
   dateValue: Date = new Date();
-
+  formCompleted = false; // check form has been completely filled by user
   constructor(private formBuilder: FormBuilder, private router: Router,
               private modalService: ModalService,
               private utils: UtilsService,
               private ticketService: TicketsService) {
+                super();
   }
 
   ngOnInit() {
@@ -31,9 +33,36 @@ export class CreateTicketComponent implements OnInit {
       priority: ['', Validators.required],
       assignee: ['', Validators.required],
       platform: ['', []],
-      dueDate: [this.dateValue, Validators.required],
+      dueDate: ['', Validators.required],
     });
 
+    this.form.valueChanges.subscribe(x => {
+      console.log('form value changed')
+      console.log(x)
+    });
+
+   
+
+  }
+
+  ngAfterViewInit() {
+    // Mark dueDate as untouched on load as it is making form dirty on load
+    this.form.get('dueDate').markAsPristine();
+    this.form.get('dueDate').markAsUntouched();
+  }
+
+  canDeactivate() {
+    if (this.form.dirty && this.form.touched && !this.submitted) {
+      // Show confirmation message
+      const modalConfig: any = {
+        title: 'Confirm!',
+        content: `You have unsaved changes to the form. Please save them before you leave.`
+      };
+      this.modalService.openAppModal(modalConfig);
+      return false;
+    }
+    return true;
+    
   }
 
   // convenience getter for easy access to form fields

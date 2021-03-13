@@ -27,7 +27,8 @@ export class AuthenticationService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post<User>(AppConfig.services.loginServiceUrl, user, this.httpOptions)
+    const url = `${AppConfig.services.loginServiceUrl}?username=${user.username}`;
+    return this.http.get<User>(url)
       .pipe(map((userData: User) => {
         // login successful if there's a jwt token in the response
         if (userData && userData.id) {

@@ -9,6 +9,7 @@ import { AuthGuard } from './services/authguard.service';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SecureLayoutComponent } from './layouts/secure/secure-layout/secure-layout.component';
 import { UnsecureLayoutComponent } from './layouts/unsecure/unsecure-layout/unsecure-layout.component';
+import { CanDeactivateGuard } from './services/can-deactivate-guard';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     children: [
       {path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'Dashboard'}  },
       {path: 'about', component: AboutComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'About'} },
-      {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'Create Ticket'} },
+      {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full', canActivate: [AuthGuard], 
+      canDeactivate: [CanDeactivateGuard],data: { title: 'Create Ticket'} },
       {path: 'tickets', component: TicketsComponent, pathMatch: 'full', canActivate: [AuthGuard], data: { title: 'All Tickets'} }
     ]
   },
