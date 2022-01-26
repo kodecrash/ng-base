@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { SpinnerService } from './services/spinner.service';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { TimeoutService } from './services/timeout.service';
 
 @Component({
   selector: 'app-root',
@@ -51,5 +52,7 @@ export class AppComponent implements OnInit {
     ).subscribe((event) => {
       this.titleService.setTitle(event['title']);
     });
+
+   
   }
 }

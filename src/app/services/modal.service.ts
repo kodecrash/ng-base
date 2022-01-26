@@ -7,7 +7,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
   providedIn: 'root'
 })
 export class ModalService {
-  bsModalRef: BsModalRef;
+  public bsModalRef: BsModalRef;
 
   public modalOpen$: Subject<any>;
 
@@ -22,5 +22,13 @@ export class ModalService {
   openAppModal(initialState: any) {
     this.bsModalRef = this.modalService.show(ModalComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  onModalClose() {
+    //this.bsModalRef.onHide(
+  }
+
+  getModalRef() {
+    return this.bsModalRef;
   }
 }

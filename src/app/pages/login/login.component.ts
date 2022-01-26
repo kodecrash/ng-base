@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { SpinnerService } from '../../services/spinner.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TimeoutService } from 'src/app/services/timeout.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private router: Router,
               private authService: AuthenticationService,
-              private spinnerService: SpinnerService) {
+              private spinnerService: SpinnerService,
+              private timeoutService: TimeoutService) {
 
   }
 
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       takeUntil(this.destroyed)
     ).subscribe((data) => {
       if (data && data.id) {
+      //  this.timeoutService.initTimeout();
         this.spinnerService.hideSpinner();
         this.router.navigate([this.returnUrl]);
       }

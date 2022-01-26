@@ -28,6 +28,11 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { SecureLayoutComponent } from './layouts/secure/secure-layout/secure-layout.component';
 import { UnsecureLayoutComponent } from './layouts/unsecure/unsecure-layout/unsecure-layout.component';
 import { environment } from '../environments/environment';
+import {
+  ModalModule,
+  BsModalRef
+} from 'ngx-bootstrap/modal';
+
 
 @NgModule({
   declarations: [
@@ -57,10 +62,12 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    ModalModule.forRoot()
 
   ],
   entryComponents: [ModalComponent],
   providers: [ AuthGuard, NavService, ModalService, SpinnerService,
+    BsModalRef,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
