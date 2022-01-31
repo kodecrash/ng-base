@@ -35,45 +35,43 @@ import {
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent,
-    NavComponent,
-    SideNavComponent,
-    LoginComponent,
-    DatePickerComponent,
-    CreateTicketComponent,
-    TicketsComponent,
-    ModalComponent,
-    SpinnerComponent,
-    TableComponent,
-    PageNotFoundComponent,
-    SecureLayoutComponent,
-    UnsecureLayoutComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedBootstrapModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    ModalModule.forRoot()
-
-  ],
-  entryComponents: [ModalComponent],
-  providers: [ AuthGuard, NavService, ModalService, SpinnerService,
-    BsModalRef,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent,
+        NavComponent,
+        SideNavComponent,
+        LoginComponent,
+        DatePickerComponent,
+        CreateTicketComponent,
+        TicketsComponent,
+        ModalComponent,
+        SpinnerComponent,
+        TableComponent,
+        PageNotFoundComponent,
+        SecureLayoutComponent,
+        UnsecureLayoutComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedBootstrapModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        ModalModule.forRoot()
+    ],
+    providers: [AuthGuard, NavService, ModalService, SpinnerService,
+        BsModalRef,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

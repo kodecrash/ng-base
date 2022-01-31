@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.authincation-content{
+    background: $white;
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+    border-radius: 5px;
+    @at-root [data-theme-version="dark"] & {
+        background: $dark-card;
+        box-shadow: none;
+    }
+
+}
+
+
+.auth-form{
+    padding: 50px 50px;
+    .btn{
+        height: 50px;
+        font-weight: 700;
+    }
+    .page-back{
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+}
